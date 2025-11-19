@@ -18,23 +18,23 @@ Crea una cuenta gratuita en Datadog, obtén tu API key e instala el agente en un
     https://app.datadoghq.eu/help/quick_start
     ```
 
-    ![](../imgs/1.png)
+    ![](../imgs/vm/1.png)
 
 - Seleccionamos el botón de "Install Your First Agent":
 
-    ![](../imgs/2.png)
+    ![](../imgs/vm/2.png)
 
 - Elegimos la plataforma donde vamos a instalar nuestro agente, en este caso "Linux":
 
-    ![](../imgs/3.png)
+    ![](../imgs/vm/3.png)
 
 - Depués de esto, se nos abre una nueva pestaña en donde primero tenemos que hacer click en "Select API key":
 
-    ![](../imgs/4.png)
+    ![](../imgs/vm/4.png)
 
 - Una vez configurada nuestra API key copiamos el comando que nos viene y lo ejecutamos en nuestra máquina virtual:
 
-    ![](../imgs/5.png)
+    ![](../imgs/vm/5.png)
 
 - Cuando se haya instalado el agante dentro de nuestra máquina comprobamos que el agente está corriendo:
 
@@ -44,39 +44,39 @@ Crea una cuenta gratuita en Datadog, obtén tu API key e instala el agente en un
 
 - También se verá en el portal de datadog:
 
-    ![](../imgs/6.png)
+    ![](../imgs/vm/6.png)
 
 - Ahora para revisar las métricas de nuestra instancia podemos irnos en el panel izquierdo a "Infrastructure > Host Map":
 
-    ![](../imgs/7.png)
+    ![](../imgs/vm/7.png)
 
 - Podemos ver las métricas principales en el resumen del host:
 
-    ![](../imgs/8.png)
+    ![](../imgs/vm/8.png)
 
 - Si pinchamos en "Dashboard" podemos ver las gráficas de CPU, memoria, disco, carga y red en tiempo real:
 
-    ![](../imgs/9.png)
+    ![](../imgs/vm/9.png)
 
 - Ahora para crear un Dashboard personalizado vamos a "Dashboard > New Dashboard"
 
-    ![](../imgs/10.png)
+    ![](../imgs/vm/10.png)
 
 - Le ponemos un nombre y lo creamos:
 
-    ![](../imgs/11.png)
+    ![](../imgs/vm/11.png)
 
 - Seleccionamos el tipo de widget "Timeseries" para añadir gráficos:
 
-    ![](../imgs/12.png)
+    ![](../imgs/vm/12.png)
 
 - Guardamos el primer widget con las métricas de CPU:
 
-    ![](../imgs/14.png)
+    ![](../imgs/vm/14.png)
 
 - Y así con 4 widgets más hasta que tengamos un dashboard completo con todos los widgets:
 
-    ![](../imgs/13.png)
+    ![](../imgs/vm/13.png)
 
 - A continuación se muestra una tabla resumen con las métricas más importantes para monitorizar una VM en un dashboard personalizado, y el motivo de incluir cada una:
 
@@ -105,33 +105,33 @@ Antes de escribir el código, hace falta consultar una serie de claves.
 
 - Primero (si no la tenemos ya) hay que crear una cuenta de servicio dentro de Google Cloud:
 
-    ![](../imgs/18.png)
+    ![](../imgs/vm/18.png)
 
-    ![](../imgs/19.png)
+    ![](../imgs/vm/19.png)
 
-    ![](../imgs/20.png)
+    ![](../imgs/vm/20.png)
 
-    ![](../imgs/21.png)
+    ![](../imgs/vm/21.png)
 
 - Una vez tenemos la cuenta de servicio, creamos la clave en formato archivo JSON que será el que nos permita conctarnos a Google Cloud:
 
-    ![](../imgs/22.png)
+    ![](../imgs/vm/22.png)
 
     > El archivo que se nos decarga es el que tenemos que indicar más adelante a terraform para autenticarnos con Google Cloud
 
 - También habrá que sacar el ID del proyecto:
   
-    ![](../imgs/23.png)
+    ![](../imgs/vm/23.png)
 
 - Por la parte de Datadog hay que consgeuir primero la API Key:
   
-    ![](../imgs/15.png)
+    ![](../imgs/vm/15.png)
 
 - Y también la APP Key (Puede ser necesario crearla):
   
-    ![](../imgs/16.png)
+    ![](../imgs/vm/16.png)
 
-    ![](../imgs/17.png)
+    ![](../imgs/vm/17.png)
 
 ---
 
