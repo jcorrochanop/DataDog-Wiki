@@ -135,7 +135,7 @@ Antes de escribir el código, hace falta consultar una serie de claves.
 
 ---
 
-### Despliegue
+### Despliegue 
 
 Una vez ya tenemos todo configurado lanzamos el terraform apply:
 
@@ -143,8 +143,9 @@ Una vez ya tenemos todo configurado lanzamos el terraform apply:
 terraform apply
 ```
 
+Podemos encontrar el código de terraform en el siguiente enlace:
 
+[Código de Terraform](../iac/dashboard-gcp-vm)
 
-    
-    
+> También existe el código de crear el dashboard con una máquina ya existente [Código de Terraform](../iac/dashboard-vm)
 
