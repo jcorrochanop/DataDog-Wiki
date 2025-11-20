@@ -7,8 +7,10 @@
 [0m
 Hit:1 http://security.ubuntu.com/ubuntu noble-security InRelease
 Hit:2 http://archive.ubuntu.com/ubuntu noble InRelease
-Hit:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease
-Hit:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Ign:3 https://apt.datadoghq.com stable InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Hit:6 https://apt.datadoghq.com stable Release
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -18,7 +20,7 @@ gnupg is already the newest version (2.4.4-2ubuntu17.3).
 The following package was automatically installed and is no longer required:
   libllvm19
 Use 'sudo apt autoremove' to remove it.
-0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+0 upgraded, 0 newly installed, 0 to remove and 10 not upgraded.
 [34m
 * Installing APT package sources for Datadog
 [0m
@@ -38,33 +40,32 @@ gpg: key D3A80E30382E94DE: "Datadog, Inc <package@datadoghq.com>" not changed
 gpg: Total number processed: 1
 gpg:              unchanged: 1
 Ign:1 https://apt.datadoghq.com stable InRelease
-Get:2 https://apt.datadoghq.com stable Release [26.0 kB]
-Get:3 https://apt.datadoghq.com stable Release.gpg [801 B]
-Get:4 https://apt.datadoghq.com stable/7 amd64 Packages [117 kB]
-Get:5 https://apt.datadoghq.com stable/7 all Packages [1184 B]
-Fetched 145 kB in 1s (276 kB/s)
+Hit:2 https://apt.datadoghq.com stable Release
 Reading package lists...
   [33mInstalling package(s): datadog-agent datadog-signing-keys
 [0m
 Reading package lists...
 Building dependency tree...
 Reading state information...
-datadog-signing-keys is already the newest version (1:1.4.0-1).
 The following package was automatically installed and is no longer required:
   libllvm19
 Use 'sudo apt autoremove' to remove it.
 The following NEW packages will be installed:
-  datadog-agent
-0 upgraded, 1 newly installed, 0 to remove and 2 not upgraded.
+  datadog-agent datadog-signing-keys
+0 upgraded, 2 newly installed, 0 to remove and 10 not upgraded.
 Need to get 0 B/163 MB of archives.
 After this operation, 726 MB of additional disk space will be used.
 Selecting previously unselected package datadog-agent.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 71030 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 70998 files and directories currently installed.)
 Preparing to unpack .../datadog-agent_1%3a7.72.2-1_amd64.deb ...
 Unpacking datadog-agent (1:7.72.2-1) ...
+Selecting previously unselected package datadog-signing-keys.
+Preparing to unpack .../datadog-signing-keys_1%3a1.4.0-1_all.deb ...
+Unpacking datadog-signing-keys (1:1.4.0-1) ...
 Setting up datadog-agent (1:7.72.2-1) ...
 Creating file: '/opt/datadog-agent/.post_python_installed_packages.txt'
 File '/opt/datadog-agent/.diff_python_installed_packages.txt' not found.
+Setting up datadog-signing-keys (1:1.4.0-1) ...
 W: --force-yes is deprecated, use one of the options starting with --allow instead.
 [34m
 * Adding your API key to the Datadog Agent configuration: /etc/datadog-agent/datadog.yaml

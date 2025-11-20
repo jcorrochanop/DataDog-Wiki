@@ -66,11 +66,11 @@ Instala Docker en tu servidor Ubuntu y despliega 2-3 contenedores simples (nginx
     init_config:
 
     instances:
-      - url: "unix://var/run/docker.sock"
+    - url: "unix://var/run/docker.sock"
         collect_container_size: true
         collect_images_stats: true
         collect_labels_as_tags:
-          com.datadoghq.tags.service: service
+        com.datadoghq.tags.service: service
     ```
 
     Este archivo le indica al agente:
