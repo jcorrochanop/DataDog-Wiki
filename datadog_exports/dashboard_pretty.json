@@ -1,0 +1,135 @@
+{
+  "title": "Dashboard de la VM",
+  "description": "Monitorización personalizada de la instancia",
+  "widgets": [
+    {
+      "id": 8711913138129172,
+      "definition": {
+        "title": "CPU Usage (host)",
+        "show_legend": true,
+        "legend_size": "auto",
+        "legend_layout": "auto",
+        "type": "timeseries",
+        "requests": [
+          {
+            "on_right_yaxis": false,
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:system.cpu.user{host:vm-instance-datadog.us-south1-b.c.balmy-mile-452912-p6.internal} by {host}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic"
+            },
+            "display_type": "line"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4308646048470452,
+      "definition": {
+        "title": "Memoria usada (%)",
+        "type": "query_value",
+        "requests": [
+          {
+            "response_format": "scalar",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:system.mem.pct_usable{host:vm-instance-datadog.us-south1-b.c.balmy-mile-452912-p6.internal}",
+                "aggregator": "avg"
+              }
+            ]
+          }
+        ],
+        "autoscale": true,
+        "precision": 0
+      }
+    },
+    {
+      "id": 3877378999391530,
+      "definition": {
+        "title": "Disk Used (MiB)",
+        "type": "query_value",
+        "requests": [
+          {
+            "response_format": "scalar",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:system.disk.used{host:vm-instance-datadog.us-south1-b.c.balmy-mile-452912-p6.internal}",
+                "aggregator": "avg"
+              }
+            ]
+          }
+        ],
+        "autoscale": true,
+        "precision": 0
+      }
+    },
+    {
+      "id": 3132750669794466,
+      "definition": {
+        "title": "Load average",
+        "show_legend": true,
+        "legend_size": "auto",
+        "legend_layout": "auto",
+        "type": "timeseries",
+        "requests": [
+          {
+            "on_right_yaxis": false,
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:system.load.1{host:vm-instance-datadog.us-south1-b.c.balmy-mile-452912-p6.internal}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic"
+            },
+            "display_type": "line"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6116568140143018,
+      "definition": {
+        "title": "Bytes sent",
+        "show_legend": true,
+        "legend_size": "auto",
+        "legend_layout": "auto",
+        "type": "timeseries",
+        "requests": [
+          {
+            "on_right_yaxis": false,
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:system.net.bytes_sent{host:vm-instance-datadog.us-south1-b.c.balmy-mile-452912-p6.internal}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic"
+            },
+            "display_type": "line"
+          }
+        ]
+      }
+    }
+  ],
+  "template_variables": [],
+  "layout_type": "ordered",
+  "notify_list": [],
+  "reflow_type": "auto"
+}

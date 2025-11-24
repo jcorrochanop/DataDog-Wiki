@@ -1,0 +1,21 @@
+{
+    "title": "CPU Usage (host)",
+    "type": "timeseries",
+    "requests": [
+        {
+            "on_right_yaxis": false,
+            "response_format": "timeseries",
+            "queries": [
+                {
+                    "data_source": "metrics",
+                    "name": "query1",
+                    "query": "avg:system.cpu.user{host:vm-instance-datadog.us-south1-b.c.balmy-mile-452912-p6.internal} by {host}"
+                }
+            ],
+            "style": {
+                "palette": "dog_classic"
+            },
+            "display_type": "line"
+        }
+    ]
+}
