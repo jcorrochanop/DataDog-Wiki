@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mi-pod
+  labels:
+    app: mi-pod
+  annotations:
+    ad.datadoghq.com/enabled: "true"
+    ad.datadoghq.com/mi-contenedor.logs: '[{"source": "custom", "service": "mi-servicio"}]'
+spec:
+  containers:
+  - name: mi-contenedor
+    image: busybox
+    command: ["sh", "-c", "while true; do echo 'Log prueba datadog'; sleep 10; done"]
+
+
+
+
