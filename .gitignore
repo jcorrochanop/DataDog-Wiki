@@ -13,3 +13,6 @@ override.tf.json
 
 # Ignorar carpeta de credenciales
 credentials/
+
+# Ignorar archivos de logs
+*.log

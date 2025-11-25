@@ -6,7 +6,7 @@ variable "gcp_credentials" {
 variable "gcp_project" {
   type        = string
   description = "ID del proyecto en Google Cloud"
-  default     = "flash-yen-478511-p6"
+  default     = "balmy-mile-452912-p6"
 }
 
 variable "gcp_region" {

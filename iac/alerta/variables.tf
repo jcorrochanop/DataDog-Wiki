@@ -16,7 +16,7 @@ variable "datadog_api_url" {
   default     = "https://api.datadoghq.eu/"
 }
 
-variable "vm_host" {
-  description = "Nombre de host de la instancia VM"
-  type        = string
+variable "alert_emails" {
+  description = "Lista de correos electrónicos para alertas"
+  type        = list(string)
 }
