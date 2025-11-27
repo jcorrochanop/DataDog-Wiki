@@ -78,7 +78,7 @@ De este modo, cuando la alerta salta, Datadog automáticamente invoca la Cloud F
 ### 3. Subir la CPU en el pod (simular incidencia)
 
 ```bash
-kubectl exec -it mi-nginx-58657d787d-abcde -- /bin/bash
+kubectl exec -it mi-nginx-58657d787d-nkrpq -- /bin/bash
 yes > /dev/null &
 ```
 
