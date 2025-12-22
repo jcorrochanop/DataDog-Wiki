@@ -16,6 +16,7 @@ locals {
     "monitoring.googleapis.com",
     "cloudresourcemanager.googleapis.com",
   ]
+  existing_sa_email = "datadog-integration@balmy-mile-452912-p6.iam.gserviceaccount.com"
 }
 
 terraform {
@@ -32,7 +33,7 @@ terraform {
 
 provider "google" {
   project = var.gcp_project
-  region  = var.gcp_region   
+  region  = var.gcp_region
 }
 
 provider "datadog" {
@@ -44,7 +45,7 @@ provider "datadog" {
 # Fetch all active, non-system projects in folders
 data "google_projects" "folder_projects" {
   for_each = toset(local.folder_ids)
-  filter = "parent.id:${each.value} AND lifecycleState:ACTIVE AND NOT projectId:sys*"
+  filter   = "parent.id:${each.value} AND lifecycleState:ACTIVE AND NOT projectId:sys*"
 }
 
 # Combine explicit projects and folder projects into a single set
@@ -68,30 +69,24 @@ resource "google_project_service" "enabled_apis" {
   service = each.value.api
 }
 
-# Create the service account
-resource "google_service_account" "datadog_gcp_service_account" {
-  account_id   = "datadog-integration"
-  display_name = "Datadog Service Account"
-  project      = "balmy-mile-452912-p6"
-
-  depends_on = [
-    google_project_service.enabled_apis
-  ]
+# Usa el service account EXISTENTE
+data "google_service_account" "datadog_existing" {
+  account_id = "datadog-integration"      
+  project    = "balmy-mile-452912-p6"     
 }
 
-# Grant the token creator role to the Datadog principal
+# Token creator para el principal de Datadog STS
 resource "google_service_account_iam_member" "datadog_gcp_service_account_token_creator" {
-  service_account_id = google_service_account.datadog_gcp_service_account.name
+  service_account_id = data.google_service_account.datadog_existing.name
   role               = "roles/iam.serviceAccountTokenCreator"
   member             = "serviceAccount:ddgci-e97399b57338c87a6ee8@datadog-gci-sts-eu1-prod.iam.gserviceaccount.com"
 
   depends_on = [
     google_project_service.enabled_apis,
-    google_service_account.datadog_gcp_service_account
   ]
 }
 
-# Assign roles to the service account in all projects
+# Roles en los proyectos
 resource "google_project_iam_member" "datadog_gcp_service_account_project_roles" {
   for_each = {
     for combo in setproduct(local.project_ids, local.roles_to_assign) :
@@ -100,15 +95,14 @@ resource "google_project_iam_member" "datadog_gcp_service_account_project_roles"
 
   project = each.value.project_id
   role    = each.value.role
-  member  = "serviceAccount:${google_service_account.datadog_gcp_service_account.email}"
+  member  = "serviceAccount:${data.google_service_account.datadog_existing.email}"
 
   depends_on = [
     google_project_service.enabled_apis,
-    google_service_account.datadog_gcp_service_account
   ]
 }
 
-# Assign roles to the service account in all folders
+# Roles en los folders (si usas folder_ids)
 resource "google_folder_iam_member" "datadog_gcp_service_account_folder_roles" {
   for_each = {
     for combo in setproduct(local.folder_ids, local.roles_to_assign) :
@@ -117,32 +111,30 @@ resource "google_folder_iam_member" "datadog_gcp_service_account_folder_roles" {
 
   folder = each.value.folder_id
   role   = each.value.role
-  member = "serviceAccount:${google_service_account.datadog_gcp_service_account.email}"
+  member = "serviceAccount:${data.google_service_account.datadog_existing.email}"
 
   depends_on = [
     google_project_service.enabled_apis,
-    google_service_account.datadog_gcp_service_account
   ]
 }
 
-# Datadog GCP Integration
+# Datadog GCP STS Integration
 resource "datadog_integration_gcp_sts" "datadog_integration" {
   depends_on = [
     google_project_service.enabled_apis,
-    google_service_account.datadog_gcp_service_account,
     google_service_account_iam_member.datadog_gcp_service_account_token_creator,
     google_project_iam_member.datadog_gcp_service_account_project_roles,
     google_folder_iam_member.datadog_gcp_service_account_folder_roles,
   ]
 
-  client_email                = google_service_account.datadog_gcp_service_account.email
+  client_email                = data.google_service_account.datadog_existing.email
   automute                    = true
   resource_collection_enabled = true
   metric_namespace_configs = [
     {
       id       = "prometheus"
       disabled = true
-      filters = []
+      filters  = []
     }
   ]
   monitored_resource_configs = []
