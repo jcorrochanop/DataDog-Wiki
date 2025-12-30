@@ -2,7 +2,7 @@
 
 A la hora de integrar Datadog con Google Cloud Run en aplicaciones containerizadas, existen **dos métodos de instrumentación**: In-Container y Sidecar. Ambos utilizan la imagen `datadog/serverless-init` y la librería `ddtrace`, pero cambian completamente en su arquitectura de despliegue.
 
-![[Pasted image 20251230095157.png]]
+![](../imgs/cloudrun-integration/1.png)
 
 ### **1.1 Método In-Container**
 En In-Container desplegamos **un único contenedor** que incluye tanto nuestro código Python con ddtrace como el serverless-init copiado durante el build. Todo está empaquetado junto: la aplicación captura trazas con ddtrace,  los logs se escriben a stdout/stderr y el serverless-init los captura automáticamente para enviar todo a Datadog. Es simple, rápido de implementar, pero genera imágenes más pesadas.
